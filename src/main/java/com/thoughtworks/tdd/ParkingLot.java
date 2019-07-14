@@ -25,7 +25,9 @@ public class ParkingLot {
     }
 
     public String queryWrongMsg(Ticket ticket) {
-        if (ticket == null || ticket.getCar() == null){
+        if (ticket == null)
+            return "Please provide your parking ticket.";
+        if (ticket.getCar() == null){
             return "Unrecognized parking ticket.";
         }
         return null;
