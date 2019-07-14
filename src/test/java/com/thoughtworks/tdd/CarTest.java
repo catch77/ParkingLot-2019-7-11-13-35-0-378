@@ -29,7 +29,7 @@ public class CarTest {
         ParkingBoy boy = new ParkingBoy();
         Ticket ticket = new Ticket();
         Assertions.assertSame(null, boy.fetch(ticket));
-        Assertions.assertSame(null, boy.fetch());
+        Assertions.assertSame(null, boy.fetch(null));
     }
 
     @Test
@@ -50,5 +50,15 @@ public class CarTest {
         }
         Car car = new Car();
         Assertions.assertSame(null, boy.park(car));
+    }
+
+    @Test
+    public void should_get_wrong_msg_when_ticket_is_used_or_null() {
+        ParkingBoy boy = new ParkingBoy();
+        Car car = new Car();
+        Ticket ticket = boy.park(car);
+        boy.fetch(ticket);
+        Assertions.assertSame("Unrecognized parking ticket.", boy.queryWrongMsg(ticket));
+        Assertions.assertSame("Unrecognized parking ticket.", boy.queryWrongMsg(null));
     }
 }

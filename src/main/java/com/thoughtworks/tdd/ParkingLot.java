@@ -3,13 +3,13 @@ package com.thoughtworks.tdd;
 public class ParkingLot {
 
     private int capacity = 10;
-    private int emptyPosition = 0;
+    private int emptyPosition = 10;
 
     public Ticket park(Car car) {
-        if (this.emptyPosition < this.capacity) {
+        if (this.emptyPosition != 0) {
             Ticket ticket = new Ticket();
             ticket.setCar(car);
-            this.emptyPosition++;
+            this.emptyPosition--;
             return ticket;
         } else {
             return null;
@@ -17,9 +17,17 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
+        if (ticket == null) return null;
         Car car = ticket.getCar();
         ticket.setCar(null);
-        this.emptyPosition--;
+        this.emptyPosition++;
         return car;
+    }
+
+    public String queryWrongMsg(Ticket ticket) {
+        if (ticket == null || ticket.getCar() == null){
+            return "Unrecognized parking ticket.";
+        }
+        return null;
     }
 }

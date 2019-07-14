@@ -20,7 +20,8 @@ public class ParkingBoy {
         return parkingLot.fetch(ticket);
     }
 
-    public Car fetch() {
-        return null;
+
+    public String queryWrongMsg(Ticket ticket) {
+        return parkingLot.queryWrongMsg(ticket);
     }
 }
