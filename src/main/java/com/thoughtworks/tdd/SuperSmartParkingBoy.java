@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class SuperSmartParkingBoy {
+public class SuperSmartParkingBoy extends ParkingBoy {
 
     private List<ParkingLot> parkingLotList = new ArrayList<>();
 
@@ -17,6 +17,7 @@ public class SuperSmartParkingBoy {
         this.parkingLotList = parkingLotList;
     }
 
+    @Override
     public Ticket park(Car car) {
         Optional<ParkingLot> parkingLotOptional = parkingLotList.stream().max(Comparator.comparingDouble(ParkingLot::getEmptyRate));
         ParkingLot parkingLot = parkingLotOptional.get();

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class SmartParkingBoy {
+public class SmartParkingBoy extends ParkingBoy {
 
     private List<ParkingLot> parkingLotList = new ArrayList<>();
 
@@ -18,6 +18,7 @@ public class SmartParkingBoy {
         this.parkingLotList = parkingLotList;
     }
 
+    @Override
     public Ticket park(Car car) {
         Optional<ParkingLot> parkingLotOptional = parkingLotList.stream().max(Comparator.comparingInt(ParkingLot::getEmptyPosition));
         ParkingLot parkingLot = parkingLotOptional.get();
