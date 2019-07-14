@@ -129,4 +129,25 @@ public class CarTest {
         Ticket ticket = smartParkingBoy.park(car);
         Assertions.assertSame(parkingLot, ticket.getParkingLot());
     }
+
+    @Test
+    public void should_park_the_car_by_super_smart_parking_boy() {
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
+        ParkingBoy boy = new ParkingBoy();
+        ParkingLot lessParkingLot = new ParkingLot();
+        lessParkingLot.setCapacity(999);
+        superSmartParkingBoy.getParkingLotList().add(lessParkingLot);
+        boy.getParkingLotList().add(lessParkingLot);
+        ParkingLot parkingLot = new ParkingLot();
+        superSmartParkingBoy.getParkingLotList().add(parkingLot);
+        boy.getParkingLotList().add(parkingLot);
+        for (int i=0; i<4; i++){
+            Car car = new Car();
+            boy.park(car);
+        }
+        superSmartParkingBoy.getParkingLotList().add(parkingLot);
+        Car car = new Car();
+        Ticket ticket = superSmartParkingBoy.park(car);
+        Assertions.assertSame(lessParkingLot, ticket.getParkingLot());
+    }
 }

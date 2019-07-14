@@ -7,6 +7,15 @@ public class ParkingLot {
 
     private int capacity = 10;
     private int emptyPosition = capacity;
+    private double emptyRate = emptyPosition / capacity;
+
+    public double getEmptyRate() {
+        return emptyRate;
+    }
+
+    public void setEmptyRate(double emptyRate) {
+        this.emptyRate = emptyRate;
+    }
 
     public int getEmptyPosition() {
         return emptyPosition;
