@@ -7,6 +7,15 @@ public class ParkingLot {
 
     private int capacity = 10;
     private int emptyPosition = capacity;
+
+    public int getEmptyPosition() {
+        return emptyPosition;
+    }
+
+    public void setEmptyPosition(int emptyPosition) {
+        this.emptyPosition = emptyPosition;
+    }
+
     private String wrongMsg;
     private List<Car> carList = new ArrayList<>();
 

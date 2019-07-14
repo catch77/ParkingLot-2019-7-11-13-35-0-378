@@ -19,7 +19,6 @@ public class ParkingBoy {
         for (int i = 0; i < parkingLotList.size(); i++) {
             if (parkingLotList.get(i).getCarList().size()<parkingLotList.get(i).getCapacity()) {
                 Ticket ticket = parkingLotList.get(i).park(car, parkingLotList.get(i));
-                ticket.setParkingLot(parkingLotList.get(i));
                 return ticket;
             }
         }
