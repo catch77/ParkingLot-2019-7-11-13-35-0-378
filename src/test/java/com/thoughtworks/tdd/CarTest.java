@@ -31,4 +31,13 @@ public class CarTest {
         Assertions.assertSame(null, boy.fetch(ticket));
         Assertions.assertSame(null, boy.fetch());
     }
+
+    @Test
+    public void should_fetch_no_car_with_used_ticket() {
+        ParkingBoy boy = new ParkingBoy();
+        Car car = new Car();
+        Ticket ticket = boy.park(car);
+        Assertions.assertSame(car, boy.fetch(ticket));
+        Assertions.assertSame(null, boy.fetch(ticket));
+    }
 }
