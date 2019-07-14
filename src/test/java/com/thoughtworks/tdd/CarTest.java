@@ -40,4 +40,15 @@ public class CarTest {
         Assertions.assertSame(car, boy.fetch(ticket));
         Assertions.assertSame(null, boy.fetch(ticket));
     }
+
+    @Test
+    public void should_park_no_car_when_parking_lot_fulled() {
+        ParkingBoy boy = new ParkingBoy();
+        for (int i = 0; i < 10; i++) {
+            Car car = new Car();
+            boy.park(car);
+        }
+        Car car = new Car();
+        Assertions.assertSame(null, boy.park(car));
+    }
 }
