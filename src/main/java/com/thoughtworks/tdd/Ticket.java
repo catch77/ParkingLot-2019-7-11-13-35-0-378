@@ -2,8 +2,7 @@ package com.thoughtworks.tdd;
 
 public class Ticket {
 
-    private Car car;
-    private String wrongMsg;
+    private String carId;
     private ParkingLot parkingLot;
 
     public ParkingLot getParkingLot() {
@@ -14,11 +13,11 @@ public class Ticket {
         this.parkingLot = parkingLot;
     }
 
-    public Car getCar() {
-        return car;
+    public String getCarId() {
+        return carId;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarId(String carId) {
+        this.carId = carId;
     }
 }

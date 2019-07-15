@@ -7,7 +7,7 @@ public class CarTest {
 
     @Test
     public void should_park_car_by_parking_boy() throws ParkException {
-        Car car = new Car();
+        String car = "car";
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy boy = new ParkingBoy();
         boy.getParkingLotList().add(parkingLot);
@@ -17,8 +17,8 @@ public class CarTest {
 
     @Test
     public void should_park_multiple_cars_by_parking_boy() throws ParkException {
-        Car car = new Car();
-        Car car1 = new Car();
+        String car = "car";
+        String car1 = "car1";
         ParkingBoy boy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot();
         boy.getParkingLotList().add(parkingLot);
@@ -57,10 +57,10 @@ public class CarTest {
         ParkingLot parkingLot = new ParkingLot();
         boy.getParkingLotList().add(parkingLot);
         for (int i = 0; i < 10; i++) {
-            Car car = new Car();
+            String car = "car"+i;
             boy.park(car);
         }
-        Car car = new Car();
+        String car = "car";
         Ticket ticket = boy.park(car);
         Assertions.assertSame(null, boy.park(car));
     }
@@ -68,7 +68,7 @@ public class CarTest {
     @Test
     public void should_get_wrong_msg_when_ticket_is_used_or_null() throws ParkException {
         ParkingBoy boy = new ParkingBoy();
-        Car car = new Car();
+        String car = "car";
         Ticket ticket = boy.park(car);
         boy.fetch(ticket);
 //        Assertions.assertSame("Unrecognized parking ticket.", boy.queryWrongMsg(ticket));
@@ -103,10 +103,10 @@ public class CarTest {
         ParkingLot parkingLot = new ParkingLot();
         boy.getParkingLotList().add(parkingLot);
         for (int i = 0; i < 10; i++) {
-            Car car = new Car();
+            String car = "car"+i;
             boy.park(car);
         }
-        Car car = new Car();
+        String car = "car";
         Ticket ticket = boy.park(car);
         Assertions.assertSame(parkingLot, ticket.getParkingLot());
     }
@@ -122,11 +122,11 @@ public class CarTest {
         smartParkingBoy.getParkingLotList().add(parkingLot);
         boy.getParkingLotList().add(parkingLot);
         for (int i=0; i<4; i++){
-            Car car = new Car();
+            String car = "car"+i;
             boy.park(car);
         }
         smartParkingBoy.getParkingLotList().add(parkingLot);
-        Car car = new Car();
+        String car = "car";
         Ticket ticket = smartParkingBoy.park(car);
         Assertions.assertSame(parkingLot, ticket.getParkingLot());
     }
@@ -143,14 +143,29 @@ public class CarTest {
         superSmartParkingBoy.getParkingLotList().add(parkingLot);
         boy.getParkingLotList().add(parkingLot);
         for (int i=0; i<4; i++){
-            Car car = new Car();
+            String car = "car"+i;
             boy.park(car);
         }
         superSmartParkingBoy.getParkingLotList().add(parkingLot);
-        Car car = new Car();
+        String car = "carrrr";
         Ticket ticket = superSmartParkingBoy.park(car);
         Assertions.assertSame(lessParkingLot, ticket.getParkingLot());
     }
 
+    @Test
+    public void should_park_the_car_by_manager() throws ParkException {
+        ServiceManager serviceManager = new ServiceManager();
+        serviceManager.setParkingLot(new ParkingLot());
+        Ticket ticket = serviceManager.park("car");
+        Assertions.assertSame("car", serviceManager.fetch(ticket));
+    }
+
+    @Test
+    public void should_park_the_car_by_manager_parking_boy() throws ParkException {
+        ServiceManager serviceManager = new ServiceManager();
+        serviceManager.setParkingLot(new ParkingLot());
+        Ticket ticket = serviceManager.park("car");
+        Assertions.assertSame("car", serviceManager.fetch(ticket));
+    }
 
 }

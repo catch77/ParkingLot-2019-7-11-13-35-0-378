@@ -19,10 +19,10 @@ public class SmartParkingBoy extends ParkingBoy {
     }
 
     @Override
-    public Ticket park(Car car) throws ParkException {
+    public Ticket park(String carId) throws ParkException {
         Optional<ParkingLot> parkingLotOptional = parkingLotList.stream().max(Comparator.comparingInt(ParkingLot::getEmptyPosition));
         ParkingLot parkingLot = parkingLotOptional.get();
-        return parkingLot.park(car, parkingLot);
+        return parkingLot.park(carId, parkingLot);
     }
 
 }

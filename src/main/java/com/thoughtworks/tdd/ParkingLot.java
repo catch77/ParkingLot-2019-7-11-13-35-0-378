@@ -26,9 +26,9 @@ public class ParkingLot {
     }
 
     private String wrongMsg;
-    private List<Car> carList = new ArrayList<>();
+    private List<String> carList = new ArrayList<>();
 
-    public ParkingLot(int capacity, int emptyPosition, String wrongMsg, List<Car> carList) {
+    public ParkingLot(int capacity, int emptyPosition, String wrongMsg, List<String> carList) {
         this.capacity = capacity;
         this.emptyPosition = emptyPosition;
         this.wrongMsg = wrongMsg;
@@ -38,11 +38,11 @@ public class ParkingLot {
     public ParkingLot() {
     }
 
-    public List<Car> getCarList() {
+    public List<String> getCarList() {
         return carList;
     }
 
-    public void setCarList(List<Car> carList) {
+    public void setCarList(List<String> carList) {
         this.carList = carList;
     }
 
@@ -62,11 +62,11 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
-    public Ticket park(Car car, ParkingLot parkingLot) throws ParkException {
+    public Ticket park(String car, ParkingLot parkingLot) throws ParkException {
         if (this.emptyPosition != 0) {
             carList.add(car);
             Ticket ticket = new Ticket();
-            ticket.setCar(car);
+            ticket.setCarId(car);
             this.emptyPosition--;
             ticket.setParkingLot(parkingLot);
             return ticket;
@@ -76,12 +76,12 @@ public class ParkingLot {
         }
     }
 
-    public Car fetch(Ticket ticket) throws ParkException {
+    public String fetch(Ticket ticket) throws ParkException {
         if (ticket == null)
             throw new ParkException("Please provide your parking ticket.");
-        Car car = ticket.getCar();
+        String car = ticket.getCarId();
         if (car != null) {
-            ticket.setCar(null);
+            ticket.setCarId(null);
             ticket.getParkingLot().getCarList().remove(car);
             this.emptyPosition++;
         } else {
