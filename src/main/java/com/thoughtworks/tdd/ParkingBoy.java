@@ -15,7 +15,7 @@ public class ParkingBoy {
         this.parkingLotList = parkingLotList;
     }
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws ParkException {
         for (int i = 0; i < parkingLotList.size(); i++) {
             if (parkingLotList.get(i).getCarList().size()<parkingLotList.get(i).getCapacity()) {
                 Ticket ticket = parkingLotList.get(i).park(car, parkingLotList.get(i));
@@ -25,14 +25,11 @@ public class ParkingBoy {
         return null;
     }
 
-    public Car fetch(Ticket ticket) {
+    public Car fetch(Ticket ticket) throws ParkException {
         if (ticket == null) return null;
         return ticket.getParkingLot().fetch(ticket);
     }
 
-    public String queryWrongMsg(Ticket ticket) {
-        return ticket.getParkingLot().queryWrongMsg(ticket);
-    }
 
 
 }

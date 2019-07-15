@@ -18,7 +18,7 @@ public class SuperSmartParkingBoy extends ParkingBoy {
     }
 
     @Override
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws ParkException {
         Optional<ParkingLot> parkingLotOptional = parkingLotList.stream().max(Comparator.comparingDouble(ParkingLot::getEmptyRate));
         ParkingLot parkingLot = parkingLotOptional.get();
         return parkingLot.park(car, parkingLot);

@@ -8,18 +8,18 @@ public class ServiceManager {
     private List<ParkingBoy> parkingBoyList;
 
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws ParkException {
         return parkingLot.park(car, parkingLot);
     }
 
-    public Car fetch(Ticket ticket) {
+    public Car fetch(Ticket ticket) throws ParkException {
         if (ticket == null) return null;
         if (ticket.getParkingLot() == parkingLot)
             return parkingLot.fetch(ticket);
         return null;
     }
 
-    public boolean askParkingWork(Car car, ParkingBoy parkingBoy) {
+    public boolean askParkingWork(Car car, ParkingBoy parkingBoy) throws ParkException {
         if (parkingBoy.park(car) != null) {
             return true;
         }

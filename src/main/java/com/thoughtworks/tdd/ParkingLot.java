@@ -62,7 +62,7 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
-    public Ticket park(Car car, ParkingLot parkingLot) {
+    public Ticket park(Car car, ParkingLot parkingLot) throws ParkException {
         if (this.emptyPosition != 0) {
             carList.add(car);
             Ticket ticket = new Ticket();
@@ -72,27 +72,22 @@ public class ParkingLot {
             return ticket;
         } else {
             wrongMsg = "Not enough position.";
-            return null;
+            throw new ParkException(wrongMsg);
         }
     }
 
-    public Car fetch(Ticket ticket) {
-        if (ticket == null) return null;
+    public Car fetch(Ticket ticket) throws ParkException {
+        if (ticket == null)
+            throw new ParkException("Please provide your parking ticket.");
         Car car = ticket.getCar();
         if (car != null) {
             ticket.setCar(null);
             ticket.getParkingLot().getCarList().remove(car);
             this.emptyPosition++;
+        } else {
+            throw new ParkException("Unrecognized parking ticket.");
         }
         return car;
     }
 
-    public String queryWrongMsg(Ticket ticket) {
-        if (ticket == null)
-            return "Please provide your parking ticket.";
-        if (ticket.getCar() == null){
-            return "Unrecognized parking ticket.";
-        }
-        return null;
-    }
 }
